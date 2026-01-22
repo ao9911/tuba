@@ -103,6 +103,9 @@ def _create_logger(config: Config) -> logging.Logger:
 
     # File handlers if log_path is specified
     if config.log_path:
+        # Ensure log directory exists
+        os.makedirs(config.log_path, exist_ok=True)
+
         if config.multi_file:
             # Create separate file handlers for each level
             _add_level_file_handler(
